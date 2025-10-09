@@ -1,9 +1,169 @@
 ---
-title: Sign Up
-description: Guides users through email, social, and wallet onboarding flows
+title: Sign Up / In Flow
+description: Entry flow for new and returning users via Email, Social login, or Web3 Wallet, including logic, edge cases, and analytics events.
 ---
 
-## Sign Up
+import { Callout } from 'fumadocs-ui/components/callout';
 
-[Content to be added]
+## Overview
 
+The Sign Up / In flow is the primary entry point for users joining the app. Users can create or access an account using **Email**, **Social login**, or a **Web3 wallet**. Each path has unique steps but all converge on a single user account.
+
+### Prerequisites
+- Internet connectivity (graceful offline handling).
+- Supported wallet extension/app for Web3 flows (e.g., MetaMask, WalletConnect).
+- At least one social provider configured (Google, Apple, X).
+- Terms of Service and Privacy Policy URLs reachable.
+
+### At a Glance
+
+| Element | Functionality | Flow / Logic | Edge Cases | Event(s) |
+|---|---|---|---|---|
+| **Overall** | Entry via Email, Social, or Wallet | User selects method → app routes to corresponding flow | Offline → "No Internet" message; ≥ N failed auth attempts disable UI for **5 minutes** | `sign_up_viewed`, `auth_method_selected`, `auth_rate_limited` |
+| **Connect Wallet Button** | Link a supported crypto wallet | Tap → wallet popup → user approves → app returns connected state | No wallet detected → "Install wallet"; 30s timeout → error toast; Unsupported wallet → prompt to update/switch | `connect_wallet_clicked`, `wallet_connect_success`, `wallet_connect_timeout`, `wallet_connect_unsupported`, `wallet_connect_no_wallet` |
+| **Email Input + Get Started** | Collect email and continue to OTP | Validate email → success → OTP confirmation page | Empty/invalid email → inline error | `email_submit_clicked`, `email_valid`, `email_invalid`, `otp_sent` |
+| **Social Icons** | Start provider OAuth | Tap icon → start provider auth | Provider down → icon disabled; Login failed → prompt retry | `social_login_clicked`, `social_login_disabled`, `social_login_failed`, `social_login_success` |
+| **Terms Links** | Open ToS / Privacy in new tab | Click link → open in new tab | Broken link → "Unable to load" toast | `terms_opened`, `privacy_opened`, `legal_link_error` |
+
+<Callout type="warn" title="Security & Abuse Controls">
+Apply bot/abuse protection (rate-limiting, CAPTCHA as needed) across all sign-in methods. Lock the UI for **5 minutes** after repeated failures and surface a clear recovery path.
+</Callout>
+
+---
+
+## Global Behaviors
+
+### Offline Handling
+- Detect offline state at view load and before network calls.
+- Show a non-blocking banner: "No Internet. Some actions are unavailable."
+- Disable submit/connect buttons while offline.
+
+### Rate Limiting / Temporary Lock
+- On multiple consecutive auth failures (configurable threshold), disable interactive auth UI for **5 minutes**.
+- Display countdown and a **Try again** button once lock expires.
+- Emit `auth_rate_limited` when lock is applied.
+
+---
+
+## Connect Wallet
+
+The **Connect Wallet** button enables users to link a Web3 wallet (e.g., MetaMask, WalletConnect).
+
+### Flow
+1. **User taps** **Connect Wallet** → emit `connect_wallet_clicked`.
+2. Trigger wallet provider popup (MetaMask/WalletConnect).
+3. On user approval, retrieve address and signature as required.
+4. Exchange wallet proof with backend → establish session.
+5. On success → emit `wallet_connect_success` and route to post-auth.
+
+### Edge Cases
+- **No wallet detected** → Show "Install wallet" prompt and link to provider docs. Emit `wallet_connect_no_wallet`.
+- **Connection timeout (30s)** → Dismiss and show error toast; allow retry. Emit `wallet_connect_timeout`.
+- **Unsupported wallet** → Prompt user to update/switch provider. Emit `wallet_connect_unsupported`.
+
+<Callout type="info">
+For WalletConnect, display a QR code on desktop and deep-link on mobile.
+</Callout>
+
+---
+
+## Email Input + Get Started
+
+A simple email capture that proceeds to OTP confirmation.
+
+### Flow
+1. User enters email → click **Get Started** → emit `email_submit_clicked`.
+2. **Validate** email (format + optional MX/allowlist checks).
+3. On success:
+   - Request OTP from backend → emit `otp_sent`.
+   - Navigate to **OTP Confirmation** page.
+4. On OTP page, verify code → establish session → redirect to post-auth.
+
+### Edge Cases
+- **Empty/invalid email** → Inline error beneath field; emit `email_invalid`.
+- **Email provider throttle** → Show "Too many attempts, try later" toast.
+- **OTP expired/incorrect** → Inline error, allow resend after short delay.
+
+<Callout type="note">
+Consider progressive profiling after first successful sign-in (e.g., username, referral, region).
+</Callout>
+
+---
+
+## Social Login
+
+Quick access via third-party providers (Google, Apple, X).
+
+### Flow
+- Tapping a provider icon starts OAuth with that provider → emit `social_login_clicked` with `provider` property.
+- On success, resolve account link/creation and sign user in → `social_login_success`.
+
+### Edge Cases
+- **Provider down** → Icon appears **grayed out/disabled** with tooltip. Emit `social_login_disabled`.
+- **Login failed/cancelled** → Error toast with **Retry** option. Emit `social_login_failed` with error code.
+
+<Callout type="error">
+Ensure PKCE and proper redirect URI whitelisting. Never expose client secrets in the client app.
+</Callout>
+
+---
+
+## Terms Links
+
+Terms of Service and Privacy Policy links are displayed beneath the form.
+
+### Behavior
+- Clicking a link opens it in a **new tab**.
+- Emit `terms_opened` or `privacy_opened` with `referrer: 'signup'`.
+
+### Edge Cases
+- **Broken link** → "Unable to load" error toast; keep user on page. Emit `legal_link_error` with the failing URL.
+
+---
+
+## UI States & Copy (Reference)
+
+- **Offline banner:** "No Internet. Some actions are unavailable."
+- **Rate-limit lock:** "Too many attempts. Please try again in **`{mm:ss}`**."
+- **Install wallet:** "No wallet detected. Install a compatible wallet to continue."
+- **Timeout:** "Connection timed out. Please try again."
+- **Invalid email:** "Enter a valid email address."
+- **Broken link:** "Unable to load this page right now."
+
+---
+
+## Analytics & Events (Suggested)
+
+```ts
+// Identify view
+track('sign_up_viewed', { surface: 'auth_landing' });
+
+// Method selection
+track('auth_method_selected', { method: 'email' | 'wallet' | 'social' });
+
+// Wallet
+track('connect_wallet_clicked');
+track('wallet_connect_success', { address });
+track('wallet_connect_timeout');
+track('wallet_connect_unsupported', { provider });
+track('wallet_connect_no_wallet');
+
+// Email
+track('email_submit_clicked');
+track('email_valid');
+track('email_invalid', { reason: 'format' | 'empty' });
+track('otp_sent');
+
+// Social
+track('social_login_clicked', { provider: 'google' | 'apple' | 'x' });
+track('social_login_success', { provider });
+track('social_login_disabled', { provider });
+track('social_login_failed', { provider, code });
+
+// Legal
+track('terms_opened', { referrer: 'signup' });
+track('privacy_opened', { referrer: 'signup' });
+track('legal_link_error', { url });
+
+// Abuse control
+track('auth_rate_limited', { windowMinutes: 5 });
