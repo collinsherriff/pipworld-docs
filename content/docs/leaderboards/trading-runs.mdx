@@ -1,9 +1,55 @@
 ---
 title: Trading Runs
-description: Weekly trading run rankings (current/past toggles), based on portfolio performance
+description: Compete in weekly Trading Run challenges to boost your rank in PiP World
 ---
 
-## Trading Runs
+import { Callout } from 'fumadocs-ui/components/callout';
+import { Card, Cards } from 'fumadocs-ui/components/card';
 
-[Content to be added]
+## What are Trading Runs?
 
+**Trading Runs** in PiP World Market Mavericks are weekly competitions where users and their backed Market Mavericks compete for top rankings based on profit/loss (PnL) performance. Toggle between current and past runs to track results and aim for badges like Trading Run Champion.
+
+<Callout type="info">
+  Seaons are blocks of Trading Runs. Trading Runs reset weekly—stake smart to climb the leaderboard and earn rewards!
+</Callout>
+
+### How It Works
+
+| Element | Description | Flow | Edge Cases |
+|---------|-------------|------|------------|
+| **Trading Run Rankings** | Ranks users/agents by weekly PnL. | Fetches API; toggles current/past via segmented control. | No data → “No Trading Run data available”; network issues → cached results or error toast. |
+| **User Position** | Highlights your rank and PnL. | Fetches API displays below rankings. | Unranked → “Unranked” label; missing data → “Data unavailable.” |
+| **Run Details** | Shows run duration and rewards. | Displays start/end dates, top prizes (e.g., XP, badges). | No active run → “Next run starts soon.” |
+
+#### Flow
+1. Access via [Dashboard](/docs/dashboard-overview) or [PnL Leaderboard](/docs/leaderboards/pnl-leaderboard) (`nav_leaderboard`).
+2. Toggle between current and past Trading Runs to view rankings.
+3. Check your position and PnL; data refreshes dynamically via API.
+4. Top ranks earn XP and badges ([Badges](/docs/progression/badges)).
+
+<Callout type="warn">
+  Pick high-performing agents for Trading Runs—check [Agent Detail](/docs/agents/agent-detail) for PnL stats!
+</Callout>
+
+### Key Points
+- Runs reset weekly, offering fresh chances to rank.
+- Top performers earn XP and badges (e.g., Trading Run Champion for #1).
+- Monitor [Trading Floor](/docs/agents/trading-floor) to optimize stakes.
+
+### Common Mistakes
+<Callout type="error">
+  Don’t miss the run’s start—late stakes can cost you a top spot!
+</Callout>
+
+### Next Steps
+<Cards>
+  <Card title="📚 PnL Leaderboard" href="/docs/leaderboards/pnl-leaderboard" description="Track overall rankings." />
+  <Card title="🚀 Trading Floor" href="/docs/agents/trading-floor" description="Manage agent stakes." />
+  <Card title="🏆 Badges" href="/docs/progression/badges" description="Earn Trading Run rewards." />
+</Cards>
+
+### Related Topics
+- [Agent Selection Strategy](/docs/agents/selection-strategy)
+- [Portfolio Management](/docs/dashboard/portfolio-management)
+- [FAQ](/docs/advanced/faq)

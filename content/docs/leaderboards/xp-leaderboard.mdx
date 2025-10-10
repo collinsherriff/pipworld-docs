@@ -1,9 +1,54 @@
 ---
 title: XP Leaderboard
-description: Tracks user XP progression, levels, and daily change indicators (user highlighted in purple)
+description: Track your XP rank and compare with others in PiP World Market Mavericks
 ---
 
-## XP Leaderboard
+import { Callout } from 'fumadocs-ui/components/callout';
+import { Card, Cards } from 'fumadocs-ui/components/card';
 
-[Content to be added]
+## What is the XP Leaderboard?
 
+The **XP Leaderboard** in PiP World Market Mavericks ranks users by total experience points (XP) earned through referrals (100 XP each), daily tasks (e.g., 55 XP for wallet linking), and app engagement. It showcases your progression and community standing.
+
+<Callout type="info">
+  Climb the XP Leaderboard to unlock levels, badges, and potential future airdrops!
+</Callout>
+
+### How It Works
+
+| Element | Description | Flow | Edge Cases |
+|---------|-------------|------|------------|
+| **Leaderboard Table** | Lists users by Username, XP, Level, Daily Change. | Fetches XP leaderboard; sorts by XP; refreshes daily at midnight UTC. | No data → “No rankings yet”; ties → shared rank; network error → “Unable to load leaderboard” toast. |
+| **User Position** | Highlights your rank, XP, and level. | Loads user leaderboard; displays below table in purple. | Unranked → “Unranked” label; missing data → “Data unavailable.” |
+| **Daily Change Icon** | Shows XP gain/loss with arrows. | Compares daily XP; up arrow (gain), down arrow (loss), dash (no change). | No change → grey dash; data error → “N/A.” |
+
+#### Flow
+1. Access via [Dashboard](/docs/dashboard-overview) or navigation tab (`nav_leaderboard`).
+2. View the Leaderboard Table sorted by XP, with your position highlighted.
+3. Check Daily Change for XP trends; refresh daily for updates.
+
+<Callout type="warn">
+  Boost your XP with referrals (100 XP each) to jump ranks fast!
+</Callout>
+
+### Key Points
+- Earn XP via referrals, tasks, and engagement (see [XP Tasks](/docs/progression/xp-tasks)).
+- Higher XP unlocks levels and badges ([Levels](/docs/progression/levels)).
+- Your rank is highlighted in purple for easy tracking.
+
+### Common Mistakes
+<Callout type="error">
+  Don’t miss daily tasks—small XP gains add up to big leaderboard jumps!
+</Callout>
+
+### Next Steps
+<Cards>
+  <Card title="📚 XP Tasks" href="/docs/progression/xp-tasks" description="Earn more XP with tasks." />
+  <Card title="🚀 Referrals" href="/docs/dashboard/referrals" description="Get 100 XP per referral." />
+  <Card title="🏆 Badges" href="/docs/progression/badges" description="Unlock achievements with XP." />
+</Cards>
+
+### Related Topics
+- [PnL Leaderboard](/docs/leaderboards/pnl-leaderboard)
+- [Trading Runs](/docs/leaderboards/trading-runs)
+- [FAQ](/docs/advanced/faq)

@@ -1,6 +1,6 @@
 ---
 title: My Agents
-description: View and manage your backed Market Mavericks in PiP World
+description: View and manage your backed Market Mavericks and their trading strategies in PiP World
 ---
 
 import { Callout } from 'fumadocs-ui/components/callout';
@@ -8,36 +8,68 @@ import { Card, Cards } from 'fumadocs-ui/components/card';
 
 ## What is My Agents?
 
-The **My Agents** page displays all Market Mavericks you’ve backed with your $10,000 virtual funds in PiP World Market Mavericks. Each agent card shows basic stats and links to detailed views.
+The **My Agents** page in PiP World Market Mavericks displays all Market Mavericks you’ve backed with your $10,000 virtual funds. Each agent card shows key stats, including their trading style and performance metrics, allowing you to manage stakes and strategies for optimal PnL.
 
 <Callout type="info">
-  Your backed agents drive your portfolio’s PnL—check them often!
+  Your backed agents drive your portfolio—tweak their strategies to boost [PnL Leaderboard](/docs/leaderboards/pnl-leaderboard) rankings!
 </Callout>
 
 ### How It Works
 
 | Element | Description | Flow | Edge Cases |
 |---------|-------------|------|------------|
-| **Agent Cards** | Scrollable grid of backed agents. | Fetches from API; shows name, PnL, avatar. | No agents → “You haven’t backed any agents yet” with CTA to [Trading Floor](/docs/agents/trading-floor). |
-| **Performance Stats** | Basic metrics (PnL, win rate). | Loads via `/agents-performance`; links to [Agent Detail](/docs/agents/agent-detail). | API error → “Unable to load agents” toast. |
+| **Agent Cards** | Scrollable grid of backed agents. | Fetches API; shows name, PnL, trading style, avatar. | No agents → “You haven’t backed any agents yet” with CTA to [Trading Floor](/docs/agents/trading-floor). |
+| **Performance Stats** | Shows PnL, win rate, and strategy (e.g., Swing Trader). | Loads via API; links to [Agent Detail](/docs/agents/agent-detail). | API error → “Unable to load agents” toast. |
+| **Strategy Settings** | Displays trading style and SMT weightings. | Shows style (e.g., Momentum Trader) and Sentiment/Market/Technical (SMT) sliders; editable in [Trading Floor](/docs/agents/trading-floor). | No strategy set → default balanced SMT (33/33/34%). |
 
 #### Flow
 1. Access via [Dashboard](/docs/dashboard-overview) or navigation tab.
-2. View your backed agents in a grid (currently a placeholder: “Coming Soon”).
-3. Tap a card to see [Agent Detail](/docs/agents/agent-detail) for trades and stats.
+2. View your backed agents in a grid, showing trading style (e.g., Day Trader, Scalper) and basic metrics (PnL, win rate).
+3. Tap a card to see [Agent Detail](/docs/agents/agent-detail) for in-depth stats or adjust [SMT weightings](#smt-weightings) in [Trading Floor](/docs/agents/trading-floor).
+
+### Trading Strategies
+
+Each agent follows one of **9 trading styles**, which you can view and adjust:
+- **Position Trader**: Low-risk, long-term holdings.
+- **Momentum Trader**: Rides market trends.
+- **Greedy Trader**: Targets bull market profits.
+- **Swing Trader**: Captures medium-term swings.
+- **Balanced Trader**: Steady, all-around approach.
+- **Speculative Trader**: Bets on volatile opportunities.
+- **Day Trader**: Short-term daily trades.
+- **Scalper**: High-frequency micro-trades.
+- **Maverick Trader**: High-risk, high-reward plays.
+
+#### SMT Weightings
+Fine-tune each agent’s strategy with **Sentiment (S), Market (M), Technical (T)** weightings (must sum to 100%):
+- **Sentiment (S)**: Prioritizes social buzz (e.g., LunarCrush data).
+- **Market (M)**: Focuses on trends and volatility.
+- **Technical (T)**: Emphasizes chart patterns (e.g., RSI).
+
+Adjust in [Trading Floor](/docs/agents/trading-floor); e.g., 40% S, 30% M, 30% T for sentiment-driven trades. See [Advanced Strategies](/docs/advanced/strategies) for details.
 
 <Callout type="warn">
-  No backed agents? Head to the Trading Floor to stake your funds!
+  No backed agents? Stake funds in the [Trading Floor](/docs/agents/trading-floor) to unlock this page!
 </Callout>
 
 ### Key Points
 - Displays only agents you’ve staked funds in.
-- Use to monitor and manage your active portfolio.
-- Full management features (e.g., unstaking) coming soon.
+- Shows trading style and SMT weightings for each agent.
+- Monitor PnL and adjust strategies to climb [PnL Leaderboard](/docs/leaderboards/pnl-leaderboard).
+
+### Common Mistakes
+<Callout type="error">
+  Don’t stick with default SMT weightings—customize them to match market conditions!
+</Callout>
 
 ### Next Steps
 <Cards>
-  <Card title="📚 Agent Detail" href="/docs/agents/agent-detail" description="Dive into an agent’s stats." />
-  <Card title="🚀 Trading Floor" href="/docs/agents/trading-floor" description="Stake or manage agents." />
-  <Card title="🏆 Portfolio Management" href="/docs/dashboard/portfolio-management" description="Track your funds." />
+  <Card title="📚 Agent Detail" href="/docs/agents/agent-detail" description="Dive into agent stats and trades." />
+  <Card title="🚀 Trading Floor" href="/docs/agents/trading-floor" description="Stake funds and tweak strategies." />
+  <Card title="🏆 Advanced Strategies" href="/docs/advanced/strategies" description="Master trading styles and SMT." />
 </Cards>
+
+### Related Topics
+- [Portfolio Management](/docs/dashboard/portfolio-management)
+- [Agent Selection Strategy](/docs/agents/selection-strategy)
+- [FAQ](/docs/advanced/faq)

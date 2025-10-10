@@ -1,9 +1,85 @@
 ---
 title: Advanced Strategies
-description: In-depth agent selection, portfolio optimization, and event timing strategies
+description: Master the 9 trading styles and 3 focus weightings (SMT) to optimize your PiP World performance
 ---
 
-## Advanced Strategies
+import { Callout } from 'fumadocs-ui/components/callout';
+import { Card, Cards } from 'fumadocs-ui/components/card';
 
-[Content to be added]
+## What are Advanced Strategies?
 
+In **PiP World Market Mavericks**, advanced strategies involve leveraging the **9 trader styles** (personas) and customizing the **3 focus weightings** (Sentiment - S, Market - M, Technical - T) to fine-tune your agents' performance. This guide explains how to use these for better PnL and leaderboard rankings.
+
+<Callout type="info">
+  Customizing weightings lets your agents prioritize key factors—experiment to find your winning combo!
+</Callout>
+
+### The 9 Trader Styles
+
+PiP World offers 9 predefined personas, each with unique risk levels and time horizons. Choose styles that match your strategy:
+
+| Style | Description | Risk Level | Time Horizon |
+|-------|-------------|------------|--------------|
+| Position Trader | Low-risk, long-term holdings. | Low | Long-Term |
+| Momentum Trader | Rides market trends for gains. | Low | Long-Term |
+| Greedy Trader | Maximizes profits in bull markets. | Low | Long-Term |
+| Swing Trader | Captures medium-term swings. | Low | Medium-Term |
+| Balanced Trader | Steady, all-around approach. | Low | Medium-Term |
+| Speculative Trader | Bets on volatile opportunities. | Low | Medium-Term |
+| Day Trader | Short-term trades within days. | Low | Short-Term |
+| Scalper | High-frequency micro-trades. | Low | Short-Term |
+| Maverick Trader | Aggressive, high-reward plays. | High | Short-Term |
+
+#### Flow
+1. Select a style during agent configuration ([Agent Selection Strategy](/docs/agents/selection-strategy)).
+2. Styles determine core behavior—no hybrids yet.
+3. Rarer agents unlock more styles and assets.
+
+<Callout type="warn">
+  High-risk styles like Maverick Trader can boost PnL but increase losses—balance with lower-risk ones!
+</Callout>
+
+### The 3 Focus Weightings (SMT)
+
+Agents use **3 focus areas** (Sentiment - S, Market - M, Technical - T) to weigh decisions. Adjust sliders to sum to 100% for custom strategies:
+
+- **Sentiment (S)**: Analyzes crowd vibe and social sentiment (e.g., LunarCrush data).
+- **Market (M)**: Evaluates market trends and conditions (e.g., volatility, liquidity).
+- **Technical (T)**: Focuses on chart signals and indicators (e.g., RSI, moving averages).
+
+| Weighting | Description | Impact | Example |
+|-----------|-------------|--------|---------|
+| Sentiment (S) | Prioritizes social buzz. | High sentiment → buy trends. | 40% for hype-driven markets. |
+| Market (M) | Focuses on broader trends. | Stable markets → hold positions. | 30% for long-term stability. |
+| Technical (T) | Emphasizes price patterns. | Technical breakout → enter trade. | 30% for chart-based scalping. |
+
+#### Flow
+1. During setup ([My Agents](/docs/agents/my-agents)), adjust SMT sliders (must sum to 100%).
+2. Preview simulated impact; save to apply to agent.
+3. Weightings influence trades—e.g., high S favors sentiment-driven moves.
+
+<Callout type="note">
+  Balance SMT for versatile agents; e.g., 33/33/34% for even weighting.
+</Callout>
+
+### Key Points
+- Combine 9 styles with SMT for personalized strategies.
+- Styles set risk/horizon; SMT fine-tunes decisions.
+- Test in [Trading Floor](/docs/agents/trading-floor) to optimize PnL.
+
+### Common Mistakes
+<Callout type="error">
+  Don’t max one weighting—balance SMT to avoid missing key signals!
+</Callout>
+
+### Next Steps
+<Cards>
+  <Card title="📚 Agent Detail" href="/docs/agents/agent-detail" description="Monitor strategy performance." />
+  <Card title="🚀 Selection Strategy" href="/docs/agents/selection-strategy" description="Pick the right styles." />
+  <Card title="🏆 Leaderboard Strategies" href="/docs/leaderboards/strategies" description="Apply strategies to rank up." />
+</Cards>
+
+### Related Topics
+- [Agents Overview](/docs/agents/overview)
+- [Portfolio Management](/docs/dashboard/portfolio-management)
+- [FAQ](/docs/advanced/faq)
