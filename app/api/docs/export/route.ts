@@ -14,20 +14,39 @@ Generated: ${new Date().toISOString()}
 
 `;
 
-    // Add each page
-    pages.forEach((page) => {
-      content += `
+    // Add each page with extracted text content
+    for (const page of pages) {
+      try {
+        // Extract the processed text content from the page
+        const textContent = await page.data.getText('processed');
+        
+        content += `
 ## ${page.data.title}
 
 **URL:** ${page.url}
 ${page.data.description ? `**Description:** ${page.data.description}\n` : ''}
 
-${page.data.body || ''}
+${textContent}
 
 ---
 
 `;
-    });
+      } catch (err) {
+        console.error(`Error processing page ${page.url}:`, err);
+        // Fallback to just title and description if text extraction fails
+        content += `
+## ${page.data.title}
+
+**URL:** ${page.url}
+${page.data.description ? `**Description:** ${page.data.description}\n` : ''}
+
+[Content extraction failed]
+
+---
+
+`;
+      }
+    }
 
     return NextResponse.json({ 
       content,
