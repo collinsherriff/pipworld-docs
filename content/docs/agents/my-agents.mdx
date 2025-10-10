@@ -1,9 +1,43 @@
 ---
 title: My Agents
-description: Managing user-selected agents, viewing status, and switching active agents
+description: View and manage your backed Market Mavericks in PiP World
 ---
 
-## My Agents
+import { Callout } from 'fumadocs-ui/components/callout';
+import { Card, Cards } from 'fumadocs-ui/components/card';
 
-[Content to be added]
+## What is My Agents?
 
+The **My Agents** page displays all Market Mavericks you’ve backed with your $10,000 virtual funds in PiP World Market Mavericks. Each agent card shows basic stats and links to detailed views.
+
+<Callout type="info">
+  Your backed agents drive your portfolio’s PnL—check them often!
+</Callout>
+
+### How It Works
+
+| Element | Description | Flow | Edge Cases |
+|---------|-------------|------|------------|
+| **Agent Cards** | Scrollable grid of backed agents. | Fetches from API; shows name, PnL, avatar. | No agents → “You haven’t backed any agents yet” with CTA to [Trading Floor](/docs/agents/trading-floor). |
+| **Performance Stats** | Basic metrics (PnL, win rate). | Loads via `/agents-performance`; links to [Agent Detail](/docs/agents/agent-detail). | API error → “Unable to load agents” toast. |
+
+#### Flow
+1. Access via [Dashboard](/docs/dashboard-overview) or navigation tab.
+2. View your backed agents in a grid (currently a placeholder: “Coming Soon”).
+3. Tap a card to see [Agent Detail](/docs/agents/agent-detail) for trades and stats.
+
+<Callout type="warn">
+  No backed agents? Head to the Trading Floor to stake your funds!
+</Callout>
+
+### Key Points
+- Displays only agents you’ve staked funds in.
+- Use to monitor and manage your active portfolio.
+- Full management features (e.g., unstaking) coming soon.
+
+### Next Steps
+<Cards>
+  <Card title="📚 Agent Detail" href="/docs/agents/agent-detail" description="Dive into an agent’s stats." />
+  <Card title="🚀 Trading Floor" href="/docs/agents/trading-floor" description="Stake or manage agents." />
+  <Card title="🏆 Portfolio Management" href="/docs/dashboard/portfolio-management" description="Track your funds." />
+</Cards>

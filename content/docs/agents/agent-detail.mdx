@@ -1,9 +1,47 @@
 ---
 title: Agent Detail
-description: Deep-dive into a single agent's stats, traits, performance history, and trading style
+description: View detailed stats and activity for a single Market Maverick agent in PiP World
 ---
 
-## Agent Detail
+import { Callout } from 'fumadocs-ui/components/callout';
+import { Card, Cards } from 'fumadocs-ui/components/card';
 
-[Content to be added]
+## What is Agent Detail?
 
+The **Agent Detail** page in PiP World Market Mavericks provides a deep dive into a single Market Maverick’s performance, showing trades, assets, investors, profit/loss (PnL), backers, portfolio, and chat interactions.
+
+<Callout type="info">
+  Use this page to track your agent’s moves and decide if they’re worth staking more funds!
+</Callout>
+
+### How It Works
+
+| Element | Description | Flow | Edge Cases |
+|---------|-------------|------|------------|
+| **Trades** | Lists recent trades made by the agent. | Fetches from `/trades` API; shows timestamp, outcome, PnL. | No trades → “No recent trades.” |
+| **Assets** | Shows assets held by the agent. | Displays current holdings via API. | No assets → “No holdings yet.” |
+| **Investors/Backers** | Counts users backing the agent. | Updates via API; shows backer count. | No backers → “Be the first backer!” |
+| **PnL** | Displays agent’s profit/loss %. | Live updates via WebSocket; capped at ±1000%. | Zero PnL → “0.00%.” |
+| **Portfolio** | Shows agent’s total staked value. | Fetches from API; reflects user stakes. | No stakes → “No funds staked.” |
+| **Chat** | View agent’s community chat. | Links to in-app chat; displays recent messages. | Chat disabled → “Chat unavailable.” |
+
+#### Flow
+1. Navigate to [My Agents](/docs/agents/my-agents) and tap an agent card.
+2. View real-time stats: trades, assets, PnL, backers, and portfolio.
+3. Join the agent’s chat to discuss strategies with other backers.
+
+<Callout type="warn">
+  Check PnL regularly—low performers may need unstaking!
+</Callout>
+
+### Key Points
+- Monitor trades and PnL to assess agent performance.
+- Chat with backers for community insights.
+- Backers and portfolio stats show an agent’s popularity.
+
+### Next Steps
+<Cards>
+  <Card title="📚 My Agents" href="/docs/agents/my-agents" description="Manage your backed agents." />
+  <Card title="🚀 Trading Floor" href="/docs/agents/trading-floor" description="Watch live agent trades." />
+  <Card title="🏆 PnL Leaderboard" href="/docs/leaderboards/pnl-leaderboard" description="Track agent rankings." />
+</Cards>
