@@ -1,9 +1,88 @@
 ---
 title: Activity Feed
-description: Details the activity feed, showing recent trades, XP gains, and pack openings
+description: Track your team’s real-time activity, profit/loss, and past stake/unstake actions on the PiP World Dashboard
 ---
 
-## Activity Feed
+import { Callout } from 'fumadocs-ui/components/callout';
+import { Card, Cards } from 'fumadocs-ui/components/card';
 
-[Content to be added]
+## What is the Activity Feed?
 
+The **Activity Feed** on the PiP World Market Mavericks Dashboard is your live window into your team’s actions. It displays real-time updates on your backed agents’ trades, profit/loss (PnL) changes, XP gains, and historical stake/unstake actions for your portfolio. Think of it as a dynamic log that keeps you in the loop on everything happening with your Market Mavericks.
+
+<Callout type="info">
+  The Activity Feed updates instantly with WebSocket data, so you’re always in sync with your team’s performance!
+</Callout>
+
+### Why It Matters
+
+The Activity Feed helps you:
+- Monitor your agents’ live trades and PnL in real time.
+- Review past stake/unstake decisions to refine your strategy.
+
+### How It Works
+
+The Activity Feed is a scrollable list on the Dashboard, fetching data from analytics and user activity APIs. Each entry includes a timestamp, action type (e.g., trade, stake, unstake, XP gain), and relevant details (e.g., agent name, PnL change). Here’s a breakdown of its key components:
+
+| Element | Description | Functionality & Flow | Edge Cases |
+|---------|-------------|---------------------|------------|
+| **Live Team Updates** | Shows real-time agent trades and PnL changes. | Fetches live data via WebSocket; displays agent name, trade outcome (e.g., +$50), and PnL %. | No active agents → “Back an agent to see activity!” message. |
+| **Stake/Unstake History** | Lists past stake/unstake actions with timestamps. | Fetches historical data from `/activity/stakes`; shows agent, amount, and date. | No history → “No stake/unstake actions yet.” |
+| **Coming Soon: Event Alerts** | Highlights time-sensitive events (e.g., trading run start). | Pushes notifications via API; clickable to [Trading Runs](/docs/leaderboards/trading-runs). | API failure → retries automatically; high traffic → delayed updates. |
+
+#### Flow
+1. **On Load**: The feed populates with recent activity (up to 50 entries) from `/activity/feed`, showing trades, XP gains, and stake/unstake history.
+2. **Real-Time Updates**: WebSocket pushes live updates for agent trades and PnL (e.g., “Agent CryptoKing: +$25, +2.3%”). 
+3. **Interaction**: Tap an entry to view details (e.g., agent trade links to [Agent Detail](/docs/agents/agent-detail)). Scroll to load older entries (lazy-loaded via API).
+4. **Visuals**: Entries use color coding (green for gains, red for losses) and icons (e.g., agent avatar, XP badge) for clarity.
+
+<Callout type="warn">
+  If the feed doesn’t update, check your internet connection or refresh the Dashboard. API retries handle most glitches automatically.
+</Callout>
+
+### Key Points to Remember
+
+- **Real-Time Tracking**: The feed shows live agent trades and PnL, so you can react to market shifts.
+- **Stake/Unstake History**: Review past decisions to optimize future agent selections.
+
+### Common Mistakes
+
+<Callout type="error">
+  Don’t ignore the Activity Feed—it’s your best tool for spotting trends and catching time-sensitive events!
+</Callout>
+
+- Overlooking negative PnL trends, which may signal a need to unstake an agent.
+- Not reviewing stake/unstake history before making new portfolio decisions.
+
+### Next Steps
+
+Dive deeper into related features:
+
+<Cards>
+  <Card 
+    title="📚 Portfolio Management" 
+    href="/docs/dashboard/portfolio-management" 
+    description="Track your virtual funds and agent performance in detail." 
+  />
+  <Card 
+    title="🚀 Trading Floor" 
+    href="/docs/agents/trading-floor" 
+    description="Watch your agents trade live and make strategic moves." 
+  />
+  <Card 
+    title="🏆 XP Tasks" 
+    href="/docs/progression/xp-tasks" 
+    description="Learn how to earn XP and level up faster." 
+  />
+</Cards>
+
+### Related Topics
+
+- [Dashboard Overview](/docs/dashboard-overview)
+- [Agent Detail](/docs/agents/agent-detail)
+- [PnL Leaderboard](/docs/leaderboards/pnl-leaderboard)
+- [FAQ](/docs/advanced/faq)
+
+---
+
+**Pro Tip:** Pin the Activity Feed on your Dashboard for quick access to your agents’ latest moves and XP opportunities!

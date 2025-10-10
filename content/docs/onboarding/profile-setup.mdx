@@ -1,9 +1,51 @@
 ---
 title: Profile Setup
-description: Details customizing avatars, connecting wallets, and setting preferences
+description: Set up your PiP World profile by signing in with email or wallet to start trading
 ---
 
-## Profile Setup
+import { Callout } from 'fumadocs-ui/components/callout';
+import { Card, Cards } from 'fumadocs-ui/components/card';
 
-[Content to be added]
+## What is Profile Setup?
 
+In **PiP World Market Mavericks**, profile setup gets you ready to trade by signing in with an email or crypto wallet. This unlocks your [Dashboard](/docs/dashboard-overview) and lets you start backing agents. Username and avatar selection are coming soon!
+
+<Callout type="info">
+  Signing in takes seconds and opens the door to agents, packs, and leaderboards!
+</Callout>
+
+### How It Works
+
+1. **Sign In**: Choose email or wallet (e.g., MetaMask) on the [Sign Up](/docs/onboarding/sign-up) page.
+2. **Email Sign-In**: Enter your email, and verify via [Email Confirmation](/docs/onboarding/email-confirmation).
+3. **Wallet Sign-In**: Connect your crypto wallet to enable pack minting and trading.
+4. **Access Dashboard**: Once signed in, you’re directed to the [Dashboard](/docs/dashboard-overview).
+
+| Action | Description | Flow | Edge Cases |
+|--------|-------------|------|------------|
+| Email Sign-In | Use email and OTP. | Enter credentials, verify email, access Dashboard. | Invalid email → “Invalid email” error; unverified → redirect to confirmation. |
+| Wallet Sign-In | Connect a crypto wallet. | Link wallet via API; access Dashboard. | Wallet not installed → “Install wallet” prompt; connection error → retry. |
+
+<Callout type="warn">
+  Connect a wallet (and vice versa) for full features and maximum XP!
+</Callout>
+
+### Key Points
+- Email or wallet sign-in is required to start.
+- Wallet connection enables future NFT features.
+
+<Callout type="info">
+- Username/avatar customization is planned for future updates.
+</Callout>
+
+### Next Steps
+<Cards>
+  <Card title="📚 Sign Up" href="/docs/onboarding/sign-up" description="Learn how to create your account." />
+  <Card title="🚀 Choosing Your First Agent" href="/docs/onboarding/first-agent" description="Pick your first three agents." />
+  <Card title="🏠 Dashboard Overview" href="/docs/dashboard-overview" description="Explore your trading hub." />
+</Cards>
+
+### Related Topics
+- [Email Confirmation](/docs/onboarding/email-confirmation)
+- [Agents Overview](/docs/agents/overview)
+- [FAQ](/docs/advanced/faq)

@@ -1,9 +1,63 @@
 ---
 title: Referrals
-description: How to earn 100 XP per onboarded friend and track referral progress
+description: Earn XP by referring friends to PiP World and unlock exciting progression rewards
 ---
 
-## Referrals
+import { Callout } from 'fumadocs-ui/components/callout';
+import { Card, Cards } from 'fumadocs-ui/components/card';
 
-[Content to be added]
+## What are Referrals?
 
+The **Referrals** system in PiP World Market Mavericks lets you invite friends to join the platform using your unique referral link, earning **100 XP** per successful sign-up. When someone signs up with your link, they get **50 XP** as a welcome bonus. XP fuels your progression, unlocking rewards and boosting your leaderboard rank.
+
+<Callout type="info">
+  Referrals are a quick way to rack up XP and climb the [XP Leaderboard](/docs/leaderboards/xp-leaderboard)!
+</Callout>
+
+### Why It Matters
+
+XP is the backbone of your PiP World journey, driving:
+- **Progression**: Gain levels to unlock new agents, packs, and exclusive features.
+- **Rewards**: Higher levels grant badges (e.g., “Top Referrer”) and access to rare collectibles.
+- **Leaderboard Dominance**: More XP boosts your rank on the [XP Leaderboard](/docs/leaderboards/xp-leaderboard).
+- **Future Benefits**: Potential airdrops of tokens or NFTs for high-XP users, offering early access to premium events or assets.
+
+### How It Works
+
+| Element | Description | Functionality & Flow | Edge Cases |
+|---------|-------------|---------------------|------------|
+| **Referral Link** | Unique link to share with friends. | Generated in the Referrals section; copied via “Copy Link” button. | Link expired → generate new link; invalid link → error toast. |
+| **XP Reward** | 100 XP for you, 50 XP for the referred user. | Credited after referred user verifies email; logged in [Activity Feed](/docs/dashboard/activity-feed). | Unverified sign-up → no XP credited; referral limit → “Limit reached” toast. |
+| **Referral Tracker** | Shows total referrals and XP earned. | Updates live via API; displays count and XP. | No referrals → “No referrals yet” placeholder. |
+
+#### Flow
+1. Go to the Referrals section on the [Dashboard](/docs/dashboard-overview).
+2. Copy your unique referral link or share via social buttons (e.g., Twitter, Discord).
+3. When a friend signs up using your link and verifies their email ([Email Confirmation](/docs/onboarding/email-confirmation)), you earn 100 XP, and they get 50 XP.
+4. Track your referral count and XP in the Referrals section or [Activity Feed](/docs/dashboard/activity-feed).
+
+<Callout type="warn">
+  Ensure referred friends verify their email, or you won’t earn the 100 XP reward!
+</Callout>
+
+### Key Points
+- Share your link widely to maximize XP—each referral is 100 XP for you.
+- XP unlocks levels, badges, and potential airdrops (e.g., exclusive NFTs).
+- Check the [Levels](/docs/progression/levels) page for unlock thresholds.
+
+### Common Mistakes
+<Callout type="error">
+  Don’t spam your referral link—focus on genuine invites to avoid platform restrictions!
+</Callout>
+
+### Next Steps
+<Cards>
+  <Card title="📚 XP Tasks" href="/docs/progression/xp-tasks" description="Earn more XP through tasks like wallet linking." />
+  <Card title="🏆 XP Leaderboard" href="/docs/leaderboards/xp-leaderboard" description="Track your rank and aim for the top." />
+  <Card title="🛡️ Badges" href="/docs/progression/badges" description="Unlock achievements with your XP." />
+</Cards>
+
+### Related Topics
+- [Dashboard Overview](/docs/dashboard-overview)
+- [Activity Feed](/docs/dashboard/activity-feed)
+- [FAQ](/docs/advanced/faq)

@@ -1,9 +1,100 @@
 ---
 title: Dashboard Overview
-description: Explains the dashboard layout - balances, activity feed, and key stats
+description: Explore the central hub of PiP World Market Mavericks, showing your performance, ranks, referrals, and achievements
 ---
 
-## Dashboard Overview
+import { Callout } from 'fumadocs-ui/components/callout';
+import { Card, Cards } from 'fumadocs-ui/components/card';
 
-[Content to be added]
+## What is the Dashboard?
 
+The **Dashboard** is your command center in PiP World Market Mavericks, providing a real-time snapshot of your virtual trading journey. It’s the first page you see after logging in or signing up, displaying your portfolio, XP progress, leaderboard ranks, badges, and quick access to key features like the Trading Floor. Designed for at-a-glance insights, it keeps you engaged with your agents, packs, and competitive standings.
+
+<Callout type="info">
+  The Dashboard updates live with your latest trades, XP gains, and ranks—check it daily to stay on top!
+</Callout>
+
+### Why It Matters
+
+The Dashboard is your go-to hub for tracking progress and making strategic decisions. It helps you:
+- Monitor your portfolio’s dollar value and profit/loss (PnL).
+- Track XP and level progression to unlock rewards.
+- See your global leaderboard rank and top competitors.
+- Access key features like Agents, Packs, and Trading Floor with one tap.
+
+### Dashboard Components
+
+Here’s a breakdown of the Dashboard’s key elements and how they work:
+
+| Element | Description | Functionality & Flow | Edge Cases |
+|---------|-------------|---------------------|------------|
+| **Level Progress Bar** | Shows real-time XP progression and claimable actions (e.g., referrals, daily logins). | Updates with XP events (e.g., 55 XP for wallet linking, 100 XP for referrals). Animates on level-up. | Max level → shows “MAX”; Level 0 → onboarding tooltip. |
+| **User Status** | Displays your username, avatar, and wallet connection status. | Loads from session data; shows reconnect prompt if wallet is disconnected. | Guest session → “Sign up” CTA; wallet error → reconnect modal. |
+| **Navigation Tabs** | Tabs for Dashboard, Agents, Packs, Leaderboard, Profile. | Tap navigates to corresponding page (e.g., [Agents Overview](/docs/agents/overview)). | Locked features → tooltip with unlock criteria; rapid taps → debounced. |
+| **Trading Floor Button** | Primary CTA to enter the [Trading Floor](/docs/agents/trading-floor). | Active only with a backed agent; navigates on click. | No agent → disabled with “Back an Agent” tooltip. |
+| **Rank** | Shows your leaderboard position (PnL or XP). | Updates every 60s via WebSocket. | Rank >1000 → “1000+”; unranked → “Unranked”. |
+| **Portfolio** | Displays total dollar value and % change. | Updates live via analytics APIs. | Negative performance → capped at –100%; gains >1000% → capped at +1000%. |
+| **Profit/Loss** | Shows lifetime PnL percentage. | Updates with market data and agent performance. | Zero value → “0.00%”; infinite loss → –100%. |
+| **Global Ranks** | Highlights top 3 Mavericks/users. | Updates every 5min via leaderboard API; shows usernames/avatars. | No ranks → “No data available” placeholder. |
+| **Badges** | Displays earned achievements with tooltips. | Fetches badge IDs on load; hover/tap shows description. | No badges → “No badges yet” placeholder. |
+
+### How It Works
+
+1. **On Page Load**: The Dashboard fetches data from user profile and analytics APIs (`/user/profile`, `/leaderboard/global`, `/xp-tasks`) to populate your username, avatar, portfolio value, XP, ranks, and badges. Live updates occur via WebSocket for portfolio and ranks.
+2. **Real-Time Updates**: The Level Progress Bar refreshes with XP events (e.g., daily login, social sharing), while Portfolio and PnL update with market data. Global Ranks refresh every 5 minutes.
+3. **Navigation**: Tabs at the top link to [Agents Overview](/docs/agents/overview), [Packs Overview](/docs/packs/overview), [PnL Leaderboard](/docs/leaderboards/pnl-leaderboard), and [Profile Setup](/docs/onboarding/profile-setup). The Trading Floor Button directs to [Trading Floor](/docs/agents/trading-floor) if you’ve backed an agent.
+4. **Interactivity**: Hover or tap badges to see achievements (e.g., “Trading Run Champion”). Click the Level Progress Bar’s claimable actions (e.g., “Refer a Friend”) to earn XP.
+
+<Callout type="warn">
+  If the Dashboard loads slowly or shows errors, it may retry automatically due to API issues or high traffic. Check your internet or try refreshing!
+</Callout>
+
+### Key Points to Remember
+
+- The Dashboard is your daily hub—check it to track progress and claim XP.
+- Back an agent to unlock the Trading Floor Button and start competing.
+- Monitor your portfolio and PnL to strategize for [PnL Leaderboard](/docs/leaderboards/pnl-leaderboard) rankings.
+- Earn badges by hitting milestones, like topping a trading run for 2 weeks.
+
+### Common Mistakes
+
+<Callout type="error">
+  Don’t ignore wallet connection prompts—linking a wallet unlocks pack minting and more XP tasks!
+</Callout>
+
+- Forgetting to claim daily XP tasks (e.g., logins) can slow your level progression.
+- Rapidly clicking Navigation Tabs may be ignored due to debouncing—wait a second between taps.
+- Not checking the [Trading Floor](/docs/agents/trading-floor) regularly can miss time-sensitive agent events.
+
+### Next Steps
+
+Explore these related sections to dive deeper:
+
+<Cards>
+  <Card 
+    title="📚 Portfolio Management" 
+    href="/docs/dashboard/portfolio-management" 
+    description="Learn to track your virtual funds and agent performance." 
+  />
+  <Card 
+    title="🚀 Trading Floor" 
+    href="/docs/agents/trading-floor" 
+    description="Engage with live agent trading activity." 
+  />
+  <Card 
+    title="🏆 XP Leaderboard" 
+    href="/docs/leaderboards/xp-leaderboard" 
+    description="Track your XP rank and claim rewards." 
+  />
+</Cards>
+
+### Related Topics
+
+- [Profile Setup](/docs/onboarding/profile-setup)
+- [Agents Overview](/docs/agents/overview)
+- [XP Tasks](/docs/progression/xp-tasks)
+- [FAQ](/docs/advanced/faq)
+
+---
+
+**Pro Tip:** Visit the Dashboard daily to claim XP tasks and stay updated on your agent’s performance!

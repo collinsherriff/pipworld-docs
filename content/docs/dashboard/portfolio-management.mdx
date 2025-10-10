@@ -1,9 +1,62 @@
 ---
 title: Portfolio Management
-description: Guides users on managing virtual funds, tracking PnL, and viewing agent performance
+description: Learn how to manage your $10,000 virtual funds and stake wisely in agents on PiP World
 ---
 
-## Portfolio Management
+import { Callout } from 'fumadocs-ui/components/callout';
+import { Card, Cards } from 'fumadocs-ui/components/card';
 
-[Content to be added]
+## What is Portfolio Management?
 
+In **PiP World Market Mavericks**, your portfolio starts with **$10,000 in virtual funds** to stake in influencer-led agents on the [Trading Floor](/docs/agents/trading-floor). Smart staking drives your profit/loss (PnL) and leaderboard rankings.
+
+<Callout type="info">
+  Your $10,000 must be fully staked across multiple agents—choose wisely!
+</Callout>
+
+### Why It Matters
+
+Portfolio management helps you:
+- Maximize PnL by staking in high-performing agents.
+- Track real-time portfolio value and percentage changes.
+- Optimize for [PnL Leaderboard](/docs/leaderboards/pnl-leaderboard) rankings.
+
+### How It Works
+
+| Element | Description | Functionality & Flow | Edge Cases |
+|---------|-------------|---------------------|------------|
+| **Portfolio Value** | Shows total $ value and % change. | Updates live via API; reflects staked agents’ PnL. | Negative PnL → not capped; gains → not capped. |
+| **Stake/Unstake** | Assign or remove funds from agents. | Stake $10,000 (or less) to agents; unstake to free funds. Logged in [Activity Feed](/docs/dashboard/activity-feed). | No funds left → “Insufficient funds”; no agents → “Back an agent.” |
+| **Agent Performance** | Displays each agent’s PnL contribution. | Fetches data; shows win rate, ROI. | No stakes → “No active stakes.” |
+
+#### Flow
+1. Access the Portfolio section on the [Dashboard](/docs/dashboard-overview).
+2. View your $10,000 balance and current stakes.
+3. Stake funds in agents via [My Agents](/docs/agents/my-agents) or [Trading Floor](/docs/agents/trading-floor).
+4. Monitor live PnL and adjust stakes based on performance.
+
+<Callout type="warn">
+  Stake all $10,000 strategically—spreading funds across agents reduces risk!
+</Callout>
+
+### Key Points
+- All funds must be staked in agents to generate PnL.
+- Check agent stats (win rate, ROI) before staking.
+- Monitor [Activity Feed](/docs/dashboard/activity-feed) for stake/unstake history.
+
+### Common Mistakes
+<Callout type="error">
+  Don’t stake most of $10,000 in one agent—diversify to balance risk!
+</Callout>
+
+### Next Steps
+<Cards>
+  <Card title="📚 My Agents" href="/docs/agents/my-agents" description="Manage your staked agents." />
+  <Card title="🚀 Trading Floor" href="/docs/agents/trading-floor" description="Stake funds in live trading." />
+  <Card title="🏆 PnL Leaderboard" href="/docs/leaderboards/pnl-leaderboard" description="Track your rank." />
+</Cards>
+
+### Related Topics
+- [Agents Overview](/docs/agents/overview)
+- [Activity Feed](/docs/dashboard/activity-feed)
+- [FAQ](/docs/advanced/faq)

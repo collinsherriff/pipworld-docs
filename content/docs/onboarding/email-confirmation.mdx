@@ -1,9 +1,113 @@
 ---
 title: Email Confirmation
-description: Explains how to verify email to unlock full app access
+description: Verify your email address to unlock full access to PiP World Market Mavericks
 ---
 
-## Email Confirmation
+import { Callout } from 'fumadocs-ui/components/callout';
+import { Card, Cards } from 'fumadocs-ui/components/card';
 
-[Content to be added]
+## Overview
 
+The **Email Confirmation** process ensures you own the email address used to sign up for PiP World Market Mavericks. Once verified, you’ll gain full access to the platform, including backing agents, opening packs, and competing on leaderboards. This guide walks you through verifying your email, entering a code, and handling issues like missing or expired verification links.
+
+<Callout type="info">
+  Verifying your email is quick and unlocks all PiP World features—don’t skip this step!
+</Callout>
+
+### Prerequisites
+
+Before you begin, ensure you have:
+- Access to the email address used during [Sign Up](/docs/onboarding/sign-up)
+- A device with a stable internet connection
+- The PiP World app or website open to the Email Confirmation page
+
+### Step-by-Step Instructions
+
+#### Step 1: Access the Email Confirmation Page
+
+1. After signing up, you’re automatically directed to the Email Confirmation page.
+2. The page displays your registered email (e.g., `user@example.com`).
+3. Check your inbox (and spam/junk folder) for a verification email from PiP World.
+
+<Callout type="warn">
+  If you don’t see the email within 5 minutes, use the Resend option to get a new link or code.
+</Callout>
+
+#### Step 2: Verify Using the Email Link
+
+1. Open the verification email and click the **Verify Email** link.
+2. The link sends a request to the backend API to validate your account.
+3. On success, you’re redirected to the [Dashboard Overview](/docs/dashboard-overview).
+
+**Edge Cases:**
+- **Invalid or expired link**: You’ll see an “Invalid or expired link” error. Use the Resend option.
+- **Resend limit exceeded**: If you’ve resent too many times (3/hour), a toast displays: “Resend limit reached. Try again later.”
+
+#### Step 3: Enter a Verification Code (Alternative)
+
+1. If you prefer manual entry, locate the 6-digit code in the verification email.
+2. On the Email Confirmation page, enter the code in the 6-digit input field.
+3. Click the **Verify Email** button to submit.
+4. The code is validated via the backend API, and on success, you’re redirected to the [Dashboard Overview](/docs/dashboard-overview).
+
+**Edge Cases:**
+- **Empty input**: Inline error: “Please enter your code.”
+- **Invalid length**: If the code isn’t 6 digits, an error shows: “Code must be 6 digits.”
+- **Expired code**: A toast displays: “Invalid or expired code.” Use the Resend option.
+
+#### Step 4: Resend Verification Link or Code
+
+1. If you didn’t receive the email or the code/link expired, click the **Resend** button.
+2. The button is disabled for 30 seconds after each resend to prevent spam.
+3. A new code or link is sent to your email, and the timer resets.
+
+**Edge Cases:**
+- **Button disabled**: If clicked before the 30-second timer, it remains inactive.
+- **Resend limit exceeded**: After 3 resends per hour, a toast shows: “Resend limit reached. Try again later.”
+
+### Troubleshooting
+
+**Problem:** Didn’t receive the verification email?  
+**Solution:** Check your spam/junk folder. If still missing, click **Resend** after the 30-second timer. Ensure your email is correct on the [Sign Up](/docs/onboarding/sign-up) page.
+
+**Problem:** “Invalid or expired code” error?  
+**Solution:** Request a new code via the **Resend** button. Codes expire after 24 hours.
+
+**Problem:** Resend button not working?  
+**Solution:** Wait for the 30-second cooldown or check if you’ve hit the 3/hour resend limit. If limited, wait an hour and try again.
+
+### Summary
+
+You’ve now learned how to verify your email using a link or 6-digit code, resend a verification if needed, and troubleshoot common issues. Once verified, you’re ready to explore PiP World’s dashboard, agents, and packs!
+
+### What's Next?
+
+Continue your journey with these resources:
+
+<Cards>
+  <Card 
+    title="📚 Profile Setup" 
+    href="/docs/onboarding/profile-setup" 
+    description="Customize your avatar and connect your wallet." 
+  />
+  <Card 
+    title="🚀 Choosing Your First Agent" 
+    href="/docs/onboarding/first-agent" 
+    description="Back your first Market Maverick to start trading." 
+  />
+  <Card 
+    title="🏠 Dashboard Overview" 
+    href="/docs/dashboard-overview" 
+    description="Explore your main hub for balances and activity." 
+  />
+</Cards>
+
+### Related Topics
+
+- [Sign Up Guide](/docs/onboarding/sign-up)
+- [Choosing Your First Agent](/docs/onboarding/first-agent)
+- [FAQ](/docs/advanced/faq)
+
+---
+
+**Pro Tip:** Keep your email accessible to quickly verify and dive into the action!
