@@ -17,6 +17,15 @@ export default async function Page(props: PageProps<'/docs/[[...slug]]'>) {
   if (!page) notFound();
 
   const MDX = page.data.body;
+  
+  // Extract the actual text content for the copy button
+  let textContent = '';
+  try {
+    textContent = await page.data.getText('processed');
+  } catch (err) {
+    console.error('Failed to extract text content:', err);
+    textContent = 'Content extraction failed';
+  }
 
   return (
     <DocsPage toc={page.data.toc} full={page.data.full}>
@@ -28,7 +37,7 @@ export default async function Page(props: PageProps<'/docs/[[...slug]]'>) {
         <CopyPageButton 
           title={page.data.title}
           description={page.data.description}
-          content={page.data.body?.toString() || ''}
+          content={textContent}
           url={page.url}
         />
       </div>
